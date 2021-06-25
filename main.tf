@@ -117,7 +117,8 @@ module "ec2" {
   }
 }
 
-module "ec2_with_t2_unlimited" {
+/*
+  module "ec2_with_t2_unlimited" {
   source = "../../"
 
   instance_count = 1
@@ -183,16 +184,4 @@ module "ec2_with_network_interface" {
     }
   ]
 }
-
-# This instance won't be created
-module "ec2_zero" {
-  source = "../../"
-
-  instance_count = 0
-
-  name                   = "example-zero"
-  ami                    = data.aws_ami.amazon_linux.id
-  instance_type          = "c5.large"
-  subnet_id              = tolist(data.aws_subnet_ids.all.ids)[0]
-  vpc_security_group_ids = [module.security_group.security_group_id]
-}
+  */
