@@ -1,3 +1,3 @@
-output "Instance_name" {
-  value = aws_instance.codepipes.name
+output "S3 Bucket Created" {
+  value = aws_s3_bucket.cldcvr-s3.bucket
 }
