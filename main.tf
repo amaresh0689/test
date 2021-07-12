@@ -32,13 +32,8 @@ resource "aws_network_interface" "cldcvr_ni" {
 resource "aws_instance" "codepipes" {
   ami = "ami-13b8337c"
   instance_type = "t2.micro"
-  
-  network_interface 
-  {
-    network_interface_id = aws_network_interface.cldcvr_ni.id
-    device_index         = 0
-  }
- }
+  depends_on = ["aws_network_interface.cldcvr_ni.id"]
+}
 
 resource "aws_s3_bucket" "cldcvr-s3" {
   bucket = "cldcvr"
