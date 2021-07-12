@@ -20,19 +20,10 @@ resource "aws_subnet" "cldcvr_subnet" {
   }
 }
 
-resource "aws_network_interface" "cldcvr_ni" {
-  subnet_id   = aws_subnet.cldcvr_subnet.id
-  private_ips = ["172.16.10.100"]
-
-  tags = {
-    Name = "primary_network_interface"
-  }
-}
-
 resource "aws_instance" "codepipes" {
   ami = "ami-13b8337c"
   instance_type = "t2.micro"
-  depends_on = ["aws_network_interface.cldcvr_ni.id"]
+  subnet_id = "${aws_subnet.cldcvr_subnet.id}"
 }
 
 resource "aws_s3_bucket" "cldcvr-s3" {
